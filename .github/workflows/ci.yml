@@ -1,8 +1,6 @@
-# 项目名称：CampusHub CI 自动化构建配置
-# 作用：每次提交代码自动构建、测试、校验
 name: CampusHub CI
 
-# 触发条件：提交代码到main分支 / 发起合并请求时自动运行
+# 触发条件：main 分支提交 / 合并请求
 on:
   push:
     branches: [ main ]
@@ -12,26 +10,27 @@ on:
 # 执行任务
 jobs:
   build:
-    # 运行环境
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 拉取代码
+      # 1. 检出代码（更新至 v5 版本，解决 Node.js 警告）
       - name: 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
-      # 2. 配置Java环境（适配SpringBoot）
-      - name: 设置JDK 17
-        uses: actions/setup-java@v4
+      # 2. 配置 JDK 17（更新至 v5 版本，解决警告）
+      - name: 设置 JDK 17
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
 
-      # 3. 构建项目 + 运行测试
-      - name: Maven构建与测试
-        run: mvn clean package -DskipTests
+      # 3. Maven 编译检查（适配当前空项目，仅做编译校验）
+      - name: Maven 编译与校验
+        run: mvn clean compile
 
       # 4. 构建成功提示
       - name: 构建完成
-        run: echo "CampusHub 项目 CI 构建成功！"
+        run: echo "✅ CampusHub 项目 CI 构建成功！"
