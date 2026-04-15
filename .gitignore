@@ -1,0 +1,30 @@
+# 编辑器
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 构建
+target/
+build/
+dist/
+out/
+
+# 依赖
+node_modules/
+venv/
+.env
+.venv
+
+# 日志
+*.log
+logs/
+
+# 数据库
+*.db
+*.sqlite
