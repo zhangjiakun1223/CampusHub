@@ -1,0 +1,4 @@
+任务：实现git 仓库CI配置
+prompt：极简、适配SpringBoot 项目、课程大作业的 GitHub CI 自动化配置（GitHub Actions）
+AI输出用途：提交代码，自动构建项目、运行测试、检查代码。
+问题与修改：AI输出的方法为基础版，我进一步使用了进阶版的CI配置
